@@ -17,6 +17,10 @@ app.get('/notes', (req, res) => {
 
 app.get('/api/notes', (req, res) => res.json(savedNotes));
 
+app.post('/api/notes', (req, res) => {
+    savedNotes.push(req.body);
+})
+
 app.listen(PORT, () => {
     console.log(`App listening on PORT: ${PORT}`);
   });
