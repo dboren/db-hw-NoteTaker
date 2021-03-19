@@ -27,7 +27,10 @@ app.post('/api/notes', (req, res) => {
 });
 
 app.put('/api/notes', (req, res) => {
+    req.body.id = generateUeniqueID();
     db.push(req.body);
+    console.log("req.body:", req.body);
+    console.log("ID:", req.body.id);
     res.json(db);
 })
 // End of routing
