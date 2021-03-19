@@ -22,14 +22,17 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => res.json(db));
 
 app.post('/api/notes', (req, res) => {
-    db.push(json.stringify(req.body));
+    db.push(req.body);
+    res.json(db);
 });
 
 app.put('/api/notes', (req, res) => {
     db.push(req.body);
+    res.json(db);
 })
 // End of routing
 
 app.listen(PORT, () => {
     console.log(`App listening on PORT: ${PORT}`);
+    console.log('current notes:', db);
   });
