@@ -22,15 +22,29 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => res.json(db));
 
 app.post('/api/notes', (req, res) => {
-    db.push(req.body);
+    req.body.id = generateUniqueID();
+    let newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        id: req.body.id,
+    };
+    console.log("newNote:", newNote);  
+    console.log("req.body:", req.body);
+    console.log("ID:", req.body.id);
+    db.push(newNote);
     res.json(db);
+    console.log("db:", db);
+    fs.writeFileSync("./db/db.json", JSON.stringify(req), (err) => { 
+        if (err) 
+          console.log(err); 
+        else { 
+          console.log("db updated"); 
+        } 
+      }); 
 });
 
 app.put('/api/notes', (req, res) => {
-    req.body.id = generateUniqueID();
     db.push(req.body);
-    console.log("req.body:", req.body);
-    console.log("ID:", req.body.id);
     res.json(db);
 })
 // End of routing
