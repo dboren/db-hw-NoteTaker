@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path');
 const fs = require('fs');
-const generateUeniqueID = require('generate-unique-id');
+const generateUniqueID = require('generate-unique-id');
 const db = require('./db/db');
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ app.post('/api/notes', (req, res) => {
 });
 
 app.put('/api/notes', (req, res) => {
-    req.body.id = generateUeniqueID();
+    req.body.id = generateUniqueID();
     db.push(req.body);
     console.log("req.body:", req.body);
     console.log("ID:", req.body.id);
