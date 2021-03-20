@@ -34,7 +34,7 @@ app.post('/api/notes', (req, res) => {
     db.push(newNote);
     res.json(db);
     console.log("db:", db);
-    fs.writeFileSync("./db/db.json", JSON.stringify(req), (err) => { 
+    fs.appendFile("./db/db.json", JSON.stringify(newNote), (err) => { 
         if (err) 
           console.log(err); 
         else { 
