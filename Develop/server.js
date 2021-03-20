@@ -34,13 +34,23 @@ app.post('/api/notes', (req, res) => {
     db.push(newNote);
     res.json(db);
     console.log("db:", db);
-    fs.appendFile("./db/db.json", JSON.stringify(newNote), (err) => { 
-        if (err) 
-          console.log(err); 
-        else { 
-          console.log("db updated"); 
-        } 
-      }); 
+    fs.readFile("./db/db.json",'utf8', function(err,data){
+        var notes = JSON.parse(data);
+        notes.push(newNote);
+        var strNotes = JSON.stringify(notes);
+        fs.writeFile("./db/db.json",strNotes, function(err){
+            if(err) return console.log(err);
+            console.log('db updated');
+        });
+
+    })
+    // fs.appendFile("./db/db.json", JSON.stringify(newNote), (err) => { 
+    //     if (err) 
+    //       console.log(err); 
+    //     else { 
+    //       console.log("db updated"); 
+    //     } 
+    //   }); 
 });
 
 app.put('/api/notes', (req, res) => {
