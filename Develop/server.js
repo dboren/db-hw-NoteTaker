@@ -23,20 +23,20 @@ app.get('/api/notes', (req, res) => res.json(db));
 
 app.post('/api/notes', (req, res) => {
     req.body.id = generateUniqueID();
-    let newNote = {
+    let pendingNote = {
         title: req.body.title,
         text: req.body.text,
         id: req.body.id,
     };
-    console.log("newNote:", newNote);  
+    console.log("newNote:", pendingNote);  
     console.log("req.body:", req.body);
     console.log("ID:", req.body.id);
-    db.push(newNote);
+    db.push(pendingNote);
     res.json(db);
     console.log("db:", db);
     fs.readFile("./db/db.json",'utf8', function(err,data){
         var notes = JSON.parse(data);
-        notes.push(newNote);
+        notes.push(pendingNote);
         var strNotes = JSON.stringify(notes);
         fs.writeFile("./db/db.json",strNotes, function(err){
             if(err) return console.log(err);
