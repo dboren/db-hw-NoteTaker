@@ -53,14 +53,25 @@ app.post('/api/notes', (req, res) => {
     //   }); 
 });
 
-app.delete('/api/notes/:id', (req, res) => {
-    // fs.readFile("./db/db.json",'utf8', function(err,data){
-        console.log("rpid:", req.params.id);
-        targetID = JSON.stringify(req.params.id);
-        console.log("target ID:", targetID);
-    // });
-    res.send("DELETE request sent");
-});
+// app.delete('/api/notes/:id', (req, res) => {
+//     // fs.readFile("./db/db.json",'utf8', function(err,data){
+//         console.log("rpid:", req.params.id);
+//         targetID = JSON.stringify(req.params.id);
+//         console.log("target ID:", targetID);
+//     // });
+//     res.send("DELETE request sent");
+// });
+
+// Below note may require additional package to use findByIdAndRemove method; commenting out for now
+// app.delete('/api/notes/:id', function (req, res) {
+//     console.log("DELETE requested");
+//     note.findByIdAndRemove(req.params.id).then((note) => {
+//       res.redirect('/');
+//     }).catch((err) => {
+//       console.log(err.message);
+//     })
+//   })
+
 // End of routing
 
 app.listen(PORT, () => {
