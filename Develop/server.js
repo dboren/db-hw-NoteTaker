@@ -74,6 +74,8 @@ app.post('/api/notes', (req, res) => {
 
 // End of routing
 
+//this comment added in order to allow another push because correction to start script in package.json did not go through
+
 app.listen(PORT, () => {
     console.log(`App listening on PORT: ${PORT}`);
     console.log('current notes:', db);
